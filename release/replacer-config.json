@@ -1,0 +1,54 @@
+{
+	"forward_list" : [
+	  {
+		"local_port" : "8080",
+		"remote_host" : "www.baidu.com",
+		"remote_port" : "80",
+		"replace_request_list" : [
+			{
+				"from" : "localhost:8080",
+				"to"   : "www.baidu.com:80"
+			},
+			{
+				"from" : "127.0.0.1:8080",
+				"to"   : "www.baidu.com:80"
+			}
+		],
+		"replace_response_list" : [
+			{
+				"from" : "www.baidu.com/",
+				"to"   : "localhost:8080/"
+			},
+			{
+				"from" : "°Ù¶È",
+				"to"   : "¼Ñ´´"
+			},
+			{
+				"from" : "hao123",
+				"to"   : "666"
+			}
+		]
+	  },
+	  {
+		"local_port" : "8081",
+		"remote_host" : "www.qq.com",
+		"remote_port" : "80",
+		"replace_request_list" : [
+			{
+				"from" : "localhost:8081",
+				"to"   : "www.qq.com:80"
+			},
+			{
+				"from" : "127.0.0.1:8081",
+				"to"   : "www.qq.com:80"
+			}
+		],
+		"replace_response_list" : [
+			{
+				"from" : "QQ",
+				"to"   : "QQQQ"
+			}
+		]
+	  }
+	]
+}
