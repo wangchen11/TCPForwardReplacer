@@ -1,47 +1,23 @@
-package person.wangchen11.tcp.forward;
+package person.wangchen11.tcp.forward.replacer;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+
 import person.wangchen11.tcp.forward.model.TcpForwardReplacerConfig;
 
-public class StreamReplacer extends Thread {
+public abstract class BaseStreamReplacer extends Thread {
 	public static final int BUFFER_SIZE = 128*1024;
-	private TcpForwardReplacerConfig.ReplaceItem replaceList[];
-	private InputStream  in;
-	private OutputStream out;
+	protected TcpForwardReplacerConfig.ReplaceItem replaceList[];
+	protected InputStream  in;
+	protected OutputStream out;
 	
-	public StreamReplacer(TcpForwardReplacerConfig.ReplaceItem replaceList[], InputStream in, OutputStream out) {
+	public BaseStreamReplacer(TcpForwardReplacerConfig.ReplaceItem replaceList[], InputStream in, OutputStream out) {
 		this.replaceList = replaceList;
 		this.in     = in;
 		this.out    = out;
 	}
-	
-	@Override
-	public void run() {
-		byte[] buffer = new byte[BUFFER_SIZE];
-		try {
-			while(true) {
-				int readLen = in.read(buffer);
-				//System.out.println("read : " + readLen);
-				if(readLen <= 0) {
-					break;
-				}
-				
-				if(replaceList == null || replaceList.length == 0) {
-					//System.out.println("write byte array");
-					out.write(buffer, 0, readLen);
-				} else {
-					byte[] replacedBuffer = applyReplacer(buffer, 0 , readLen);
-					out.write(replacedBuffer);
-				}
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
+
 	public byte[] applyReplacer(byte[] buffer, int pos, int len) {
 		byte[] newBuffer = new byte[len];
 		System.arraycopy(buffer, pos, newBuffer, 0, len);
@@ -58,7 +34,7 @@ public class StreamReplacer extends Thread {
 		
 		return newBuffer;
 	}
-
+	
 	public static byte[] replaceAll(byte[] buffer, byte[] from, byte[] to) {
 		//System.out.println("replaceAll:" + new String(from) + " -> " + new String(to));
 		if (from==null || from.length<=0) {
@@ -87,6 +63,11 @@ public class StreamReplacer extends Thread {
 			}
 		}
 		return out.toByteArray();
+	}
+
+	public static byte[] replaceFrist(byte[] buffer, byte[] from, byte[] to) {
+		// TODO 
+		return buffer;
 	}
 	
 	public static int indexOf(byte[] buffer, int start, byte[] find) {

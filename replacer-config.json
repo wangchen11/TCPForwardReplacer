@@ -1,54 +1,59 @@
 {
-	"forward_list" : [
-	  {
-		"local_port" : "8080",
-		"remote_host" : "www.baidu.com",
-		"remote_port" : "80",
-		"replace_request_list" : [
-			{
-				"from" : "localhost:8080",
-				"to"   : "www.baidu.com:80"
-			},
-			{
-				"from" : "127.0.0.1:8080",
-				"to"   : "www.baidu.com:80"
-			}
-		],
-		"replace_response_list" : [
-			{
-				"from" : "www.baidu.com/",
-				"to"   : "localhost:8080/"
-			},
-			{
-				"from" : "°Ù¶È",
-				"to"   : "¼Ñ´´"
-			},
-			{
-				"from" : "hao123",
-				"to"   : "666"
-			}
-		]
-	  },
-	  {
-		"local_port" : "8081",
-		"remote_host" : "www.qq.com",
-		"remote_port" : "80",
-		"replace_request_list" : [
-			{
-				"from" : "localhost:8081",
-				"to"   : "www.qq.com:80"
-			},
-			{
-				"from" : "127.0.0.1:8081",
-				"to"   : "www.qq.com:80"
-			}
-		],
-		"replace_response_list" : [
-			{
-				"from" : "QQ",
-				"to"   : "QQQQ"
-			}
-		]
-	  }
-	]
+  "forward_list" : [
+    {
+	    "is_http" : "true",
+	    "local_port" : "9800",
+	    "remote_host" : "124.222.62.33",
+	    "remote_port" : "9800",
+	    "append_request_header" : {
+	    },
+	    "append_response_header" : {
+	    	"Access-Control-Allow-Origin" : "*"
+	    },
+	    "replace_request_list" : [
+	    ],
+	    "replace_response_list" : [
+	      {
+	        "from" : "10.131.41.95:8090/",
+	        "to"   : "100.131.41.95:8091/"
+	      }
+	    ]
+    },
+    {
+	    "is_http" : "true",
+	    "local_port" : "8080",
+	    "remote_host" : "www.baidu.com",
+	    "remote_port" : "80",
+	    "append_request_header" : {
+	    	"HOST" : "www.baidu.com:80"
+	    },
+	    "append_response_header" : {
+	    	"Access-Control-Allow-Origin" : "*"
+	    },
+	    "replace_request_list" : [
+	    ],
+	    "replace_response_list" : [
+	    ]
+    },
+    {
+	    "is_http" : "true",
+	    "local_port" : "8081",
+	    "remote_host" : "www.qq.com",
+	    "remote_port" : "80",
+	    "append_request_header" : {
+	    	"HOST" : "www.qq.com:80"
+	    },
+	    "append_response_header" : {
+	    	"Access-Control-Allow-Origin" : "*"
+	    },
+	    "replace_request_list" : [
+	    ],
+	    "replace_response_list" : [
+	      {
+	        "from" : "QQ",
+	        "to"   : "QQQQ"
+	      }
+	    ]
+    }
+  ]
 }

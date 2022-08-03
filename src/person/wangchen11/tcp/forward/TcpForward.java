@@ -22,7 +22,7 @@ public class TcpForward extends Thread {
 			e.printStackTrace();
 		}
 		String status = isSuccess() ? "success" : "failed";
-		System.out.println("forward localhost:" + config.localPort + " -> " + config.remoteHost + ":" + config.remotePort + " " + status);
+		System.out.println("forward localhost:" + config.localPort + " -> " + config.remoteHost + ":" + config.remotePort + " " + status + " as " + (config.isHttp ? "HTTP" : "RAW"));
 		
 		super.start();
 	}

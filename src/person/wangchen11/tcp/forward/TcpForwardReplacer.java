@@ -20,7 +20,7 @@ public class TcpForwardReplacer {
     }
 	
     public static void main(String[] args) throws JsonSyntaxException, JsonIOException, FileNotFoundException {
-    	// args = new String[] { "replacer-config.json" };
+    	args = new String[] { "replacer-config.json" };
     	if(args.length <= 0) {
     		usage();
     		System.exit(-1);
