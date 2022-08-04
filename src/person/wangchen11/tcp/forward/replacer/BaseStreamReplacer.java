@@ -7,7 +7,7 @@ import java.io.OutputStream;
 import person.wangchen11.tcp.forward.model.TcpForwardReplacerConfig;
 
 public abstract class BaseStreamReplacer extends Thread {
-	public static final int BUFFER_SIZE = 128*1024;
+	public static final int BUFFER_SIZE = 32*1024;
 	protected TcpForwardReplacerConfig.ReplaceItem replaceList[];
 	protected InputStream  in;
 	protected OutputStream out;
